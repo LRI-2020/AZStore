@@ -1,7 +1,10 @@
 <?php
 // Start the session
 session_start();
-
+$_SESSION["shoppingCart"] = array(
+    "TotalPriceCart" => 0,
+    "TotalItemsCount" => 0,
+);
 add_to_cart();
 ?>
 
@@ -71,27 +74,44 @@ function item_html_template($image_url, $product_name, $price, $id)
 
 function add_to_cart()
 {
+    //récupérer id dans le json
     $id = $_GET['id'];
+    //si id présent 
     if (isset($id)) {
+        //alors lance fonction get_by_id
         $item = get_by_id($id);
-        print_r($item);
+        //ajouter l'item au shopping cart
+        add_item_to_shopping_cart($item);
     }
 }
 
 
 function get_by_id($id)
 {
+    //appeler la fonction data_items (éléments de la data base)
     $all_items = data_items();
+    //pour chaque item
     foreach ($all_items as $item) {
+        //si l'id du json == à l'id demandée dans la value du bouton
         if ($item['id'] == $id) {
-            $result_item = $item;
+            //alors return $item
+            return $item;
         }
     }
-    return $result_item;
+    return null;
 }
 
-function add_item_to_shooping_cart()
+function add_item_to_shopping_cart($item)
 {
+    // $shopping_cart = $_SESSION["shoppingCart"];
+    // $total_price_items = $item['product'] *;
+    $_SESSION["shoppingCart"][$item['id']] = array(
+        "productName" => $item['product'],
+        "itemPrice" => $item['price'],
+        "count" => 1,
+        "totalPriceItem" => $item['price']
+    );
+    print_r($_SESSION['shoppingCart']);
 }
 
 
