@@ -1,11 +1,10 @@
 <?php
 // Start the session
 session_start();
-$_SESSION["shoppingCart"] = array(
-    "TotalPriceCart" => 0,
-    "TotalItemsCount" => 0,
-);
+
 add_to_cart();
+print_r($_SESSION['shoppingCart']);
+// test();
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +21,7 @@ add_to_cart();
 
         <?php
         //on appele la fonction dans l'html
-        echo all_items(); ?>
+        all_items(); ?>
     </div>
 </body>
 
@@ -74,12 +73,10 @@ function item_html_template($image_url, $product_name, $price, $id)
 
 function add_to_cart()
 {
-    //récupérer id dans le json
-    $id = $_GET['id'];
     //si id présent 
-    if (isset($id)) {
+    if (isset($_GET['id'])) {
         //alors lance fonction get_by_id
-        $item = get_by_id($id);
+        $item = get_by_id($_GET['id']);
         //ajouter l'item au shopping cart
         add_item_to_shopping_cart($item);
     }
@@ -103,19 +100,69 @@ function get_by_id($id)
 
 function add_item_to_shopping_cart($item)
 {
-    // $shopping_cart = $_SESSION["shoppingCart"];
-    // $total_price_items = $item['product'] *;
-    $_SESSION["shoppingCart"][$item['id']] = array(
-        "productName" => $item['product'],
-        "itemPrice" => $item['price'],
-        "count" => 1,
-        "totalPriceItem" => $item['price']
-    );
-    print_r($_SESSION['shoppingCart']);
+    if (isset($_SESSION["shoppingCart"])) {
+
+
+
+        if (array_key_exists($item['id'], $_SESSION["shoppingCart"])) {
+            $_SESSION["shoppingCart"][$item['id']]['count']++;
+            $total_price_items = $_SESSION["shoppingCart"][$item['id']]['count'] * $_SESSION["shoppingCart"][$item['id']]['itemPrice'];
+            $_SESSION["shoppingCart"][$item['id']]['totalPriceItem'] = $total_price_items;
+        } else {
+            $_SESSION["shoppingCart"][$item['id']] = array(
+                "productName" => $item['product'],
+                "itemPrice" => $item['price'],
+                "count" => 1,
+                "totalPriceItem" => $item['price'],
+            );
+            //mettre à jour le nombre d'items du panier
+        }
+    } else {
+        $_SESSION["shoppingCart"] = array(
+            $item['id'] => array(
+                "productName" => $item['product'],
+                "itemPrice" => $item['price'],
+                "count" => 1,
+                "totalPriceItem" => $item['price']
+            ),
+            //mettre à jour le nombre d'items du panier
+            "TotalPriceCart" => 0,
+            "TotalItemsCount" => 0,
+        );
+    }
+    $my_article = array();
+    //mettre à jour le nombre d'items du panier
+    foreach ($_SESSION['shoppingCart'] as $key => $value) {
+
+        if (is_int($key)) {
+            $my_article[] = $value;
+        }
+    }
+    $counts = array();
+    foreach ($my_article as $article) {
+
+        $counts[] = $article['count'];
+    }
+    echo '<pre>';
+    print_r($counts);
+    echo '</pre>';
+    $sum = 0;
+    foreach ($counts as $count) {
+        $sum = $sum + $count;
+    }
+    echo ($sum);
+}
+
+function test()
+{
+    session_destroy();
 }
 
 
+
 // $item1 = get_by_id(1);
+// add_item_to_shopping_cart($item1);
+// add_item_to_shopping_cart($item1);
 // $item2 = get_by_id(2);
 // $item3 = get_by_id(3);
 // $item4 = get_by_id(4);
