@@ -135,6 +135,7 @@ function createCart()
 function addNewItemToCart($item)
 {
     $_SESSION["shoppingCart"][$item['id']] = array(
+            "image_url" => $item['image_url'],
         "productName" => $item['product'],
         "itemPrice" => $item['price'],
         "count" => 1,
