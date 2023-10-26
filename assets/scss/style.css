@@ -1,9 +1,29 @@
 body {
-  background-color: pink;
+  color: white;
 }
 
-.imgShoe {
-  width: 15%;
+.btn-items {
+  height: 30px;
+  width: 80px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4a8bf6;
+  color: white;
+}
+
+.slogan-btn {
+  background: linear-gradient(90deg, rgb(74, 139, 246) 0%, rgb(31, 60, 141) 100%);
+  color: white;
+  border-radius: 5px;
+  height: 30px;
+  width: 90px;
+  border: none;
+}
+
+body {
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: linear-gradient(0deg, rgb(17, 24, 39) 0%, rgb(0, 0, 0) 100%);
 }
 
 header {
@@ -27,6 +47,10 @@ header .cart .bubble {
   position: absolute;
   right: 1%;
   top: 1%;
+}
+
+.imgShoe {
+  width: 15%;
 }
 
 .itemsContainer {

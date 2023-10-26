@@ -23,6 +23,14 @@ add_to_cart();
             <div class="bubble"><?php displayTotalCount() ?></div>
         </div>
     </header>
+
+
+    <div class="slogan">
+        <h2>shoe the right one.</h2>
+        <button class="slogan-btn">See our store</button>
+        <img src="./assets/img/shoe_one.png">
+        <p>nike</p>
+    </div>
     <div class="container itemsContainer">
 
         <?php
@@ -68,7 +76,7 @@ function item_html_template($image_url, $product_name, $price, $id)
     <h3 class="productName">' . $product_name . '</h3>
     <p class="price">' . $price . '</p>
     <form method="GET" action="index.php">
-        <button value="' . $id . '" type="submit" name="id">add to cart</button>
+        <button value="' . $id . '" type="submit" name="id" class="btn-items">add to cart</button>
     </form>
     </div>';
     //get/post va stocker l'id dans une variable id car name = id dont la valeur se trouve dans value
