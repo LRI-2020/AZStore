@@ -3,24 +3,24 @@
     "id": 1,
     "product": "Nike Air Max 270",
     "price": 140,
-    "image_url": "./assets/img/shoe_two.jpg"
+    "image_url": "./assets/img/shoe_two.png"
   },
   {
     "id": 2,
     "product": "Addidas machin truc",
     "price": 200,
-    "image_url": "./assets/img/shoe_one.jpg"
+    "image_url": "./assets/img/shoe_one.png"
   },
   {
     "id": 3,
     "product": "Puma bidule",
     "price": 100,
-    "image_url": "./assets/img/shoe_one.jpg"
+    "image_url": "./assets/img/shoe_one.png"
   },
   {
     "id": 4,
     "product": "Geox gnagna",
     "price": 115,
-    "image_url": "./assets/img/shoe_one.jpg"
+    "image_url": "./assets/img/shoe_one.png"
   }
 ]
