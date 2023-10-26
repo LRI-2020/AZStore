@@ -1,9 +1,8 @@
 <?php
 // Start the session
 session_start();
-
 add_to_cart();
-print_r($_SESSION['shoppingCart']);
+//print_r($_SESSION['shoppingCart']);
 // test();
 ?>
 

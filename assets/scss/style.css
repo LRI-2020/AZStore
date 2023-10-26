@@ -2,4 +2,13 @@ body {
   background-color: pink;
 }
 
+.imgShoe {
+  width: 15%;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
 /*# sourceMappingURL=style.css.map */
