@@ -10,11 +10,28 @@
         <?php
             session_start();
 
-            $shoppingCart = $_SESSION['shoppingCart'];
+            $shoppingCart =   $_SESSION['shoppingCart'] = array(
+                "id" => array(
+                    "product"=> "Nike Air Max 270",
+                    "price"=> 140,
+                    "image_url"=> "./assets/img/shoe_two.jpg"
+                ),
+                "id2" => array(
+                    "product"=> "Nike Air Max 270",
+                    "price"=> 140,
+                    "image_url"=> "./assets/img/shoe_two.jpg"
+                ),
+                "id3" => array(
+                    "product"=> "Nike Air Max 270",
+                    "price"=> 140,
+                    "image_url"=> "./assets/img/shoe_two.jpg"
+                ),
+                  
+            );
 
-            /* echo '<pre>';
+            echo '<pre>';
             print_r($shoppingCart);
-            echo '<pre>'; */
+            echo '<pre>';
 
             /* echo $shoppingCart['TotalPriceCart'], '<br />';
             echo $shoppingCart['TotalItemsCount'], '<br />'; */
@@ -24,7 +41,9 @@
                     <div class="product">
                 EOD;
                 $deleteBtn = isset($_GET['delete']);
-                foreach ($shoppingCart[$i] as $infos) {
+                foreach ($shoppingCart as $key=>$items) {
+
+                    echo $key;
                     
                     $itemPrice = $shoppingCart[$i]['itemPrice'];
 
@@ -48,7 +67,7 @@
                 }
                 echo <<<EOD
                     <form method="GET">
-                        <input type='submit' value='Delete product' name='delete' class=$i>
+                        <input type='button' value='Delete product' name='delete' class=$i>
                     </form>
                     </div>
                 EOD;
