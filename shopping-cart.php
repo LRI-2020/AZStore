@@ -4,89 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./assets/scss/layouts/__layouts-dir.scss">
+    <link rel="stylesheet" type="text/css" href="./assets/scss/components/__buttons.scss">
     <title>Document</title>
 </head>
     <body>
         <?php
-            session_start();
 
-            $shoppingCart =   $_SESSION['shoppingCart'] = array(
-                "id" => array(
-                    "product"=> "Nike Air Max 270",
-                    "price"=> 140,
-                    "image_url"=> "./assets/img/shoe_two.jpg"
-                ),
-                "id2" => array(
-                    "product"=> "Nike Air Max 270",
-                    "price"=> 140,
-                    "image_url"=> "./assets/img/shoe_two.jpg"
-                ),
-                "id3" => array(
-                    "product"=> "Nike Air Max 270",
-                    "price"=> 140,
-                    "image_url"=> "./assets/img/shoe_two.jpg"
-                ),
-                  
-            );
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
 
-            echo '<pre>';
+ 
+
+           /*  echo '<pre>';
             print_r($shoppingCart);
-            echo '<pre>';
+            echo '<pre>'; */
 
-            /* echo $shoppingCart['TotalPriceCart'], '<br />';
-            echo $shoppingCart['TotalItemsCount'], '<br />'; */
+            /* echo $shoppingCart['TotalPriceCart'];
+            echo $shoppingCart['TotalItemsCount']; */
+            echo <<<EOD
+                <div class="allProducts">
+            EOD;
 
-            for ($i = 0; $i < (count($shoppingCart) - 2); $i++) {
+        function event() {
+            session_start();
+            $shoppingCart = $_SESSION['shoppingCart'];            
+
+            foreach ($shoppingCart as $key=>$items) {
                 echo <<<EOD
-                    <div class="product">
+                <div class="productDiv">
                 EOD;
-                $deleteBtn = isset($_GET['delete']);
-                foreach ($shoppingCart as $key=>$items) {
 
-                    echo $key;
-                    
-                    $itemPrice = $shoppingCart[$i]['itemPrice'];
-
-                    if ($infos == $itemPrice) {
-
+                foreach ($items as $keyItem=>$item) {
+                    if ($keyItem == "image_url") {
                         echo <<<EOD
-
-                            <div class="money">$itemPrice €</div><br />
-
+                            <div class=$keyItem>
+                            <img src=$item>
+                            </div>
                         EOD;
+
+                    } else if ($keyItem == 'price'){
+                        echo <<<EOD
+                            <div class=$keyItem>
+                            EOD;
+                        echo $item, ' €';
+                        echo <<<EOD
+                            </div>
+                        EOD;
+
                     } else {
-
                         echo <<<EOD
-
-                            <div>$infos</div><br />
-
+                            <div class=$keyItem>
                         EOD;
-                    }   
-                    $deleteBtn = $_GET['delete'];  
-                               
-                }
-                echo <<<EOD
-                    <form method="GET">
-                        <input type='button' value='Delete product' name='delete' class=$i>
-                    </form>
-                    </div>
-                EOD;
-                echo $deleteBtn;
-                if ($deleteBtn) {
-                    echo $deleteBtn;
-                    if ($itemPrice == $itemPrice) {
-                        
+                        echo $item;
+                        echo <<<EOD
+                            </div>
+                        EOD;
                     }
-                }  
-                
+                }
+                if (isset($_POST[$key]) == 1){
+                    delete($key);
+                    header('Location: shopping-cart.php');
+                }
+            echo <<<EOD
+                <form method="POST">
+                    <button value=$key type="submit" name=$key>Delete product</button>
+                </form>
+                </div>
+            EOD;
+            
+            
+        }
+ 
+        
+       
+        }
+        function delete($key) { 
+            $keys = array_key_exists($key, $_SESSION['shoppingCart']); 
+            if ($keys !== false) {
+                unset($_SESSION['shoppingCart'][$key]);
             }
-            
-            
+        }
+  
+        event();
+        echo <<<EOD
+        </div>
+        EOD;
         ?>
 
+        <div class = 'buttonsDiv'>
+        <form action="index.php" method="POST">
+            <input type="submit" value="Index" name="index">
+        </form>
         <form action="checkout.php" method="POST">
             <input type="submit" value="Checkout" name="checkout">
         </form>
+        </div>
         
     </body>
 </html>

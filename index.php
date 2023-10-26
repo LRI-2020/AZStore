@@ -8,27 +8,6 @@
 <body>
 <div>
     This is a dummy test
-
-    <?php
-  $_SESSION['shoppingCart'] = array(
-    "id" => array(
-        "product"=> "Nike Air Max 270",
-        "price"=> 140,
-        "image_url"=> "./assets/img/shoe_two.jpg"
-    ),
-    "id" => array(
-        "product"=> "Nike Air Max 270",
-        "price"=> 140,
-        "image_url"=> "./assets/img/shoe_two.jpg"
-    ),
-    "id" => array(
-        "product"=> "Nike Air Max 270",
-        "price"=> 140,
-        "image_url"=> "./assets/img/shoe_two.jpg"
-    ),
-      
-  )
-?>
 </div>
 </body>
 </html>

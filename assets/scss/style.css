@@ -2,4 +2,63 @@ body {
   background-color: pink;
 }
 
-/*# sourceMappingURL=style.css.map */
+button {
+  background-color: #111827;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+}
+
+input {
+  background-color: white;
+  color: #111827;
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  width: 80px;
+}
+
+body {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #111827;
+  text-shadow: #ada4a4 1px 1px 1px;
+}
+body .buttonsDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+}
+body .allProducts {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+body .allProducts .productDiv {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15rem;
+  background-color: white;
+  border-radius: 20px;
+  height: 20vh;
+  box-shadow: #ada4a4 1px px 3px;
+}
+body .allProducts .productDiv .image_url {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .allProducts .productDiv img {
+  width: 80%;
+}/*# sourceMappingURL=style.css.map */
