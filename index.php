@@ -3,7 +3,7 @@
 session_start();
 add_to_cart();
 //print_r($_SESSION['shoppingCart']);
-// test();
+//test();
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +16,13 @@ add_to_cart();
 </head>
 
 <body>
+    <header>
+        <h1>Luxury shoes</h1>
+        <div class="cart">
+            <img src="./assets/img/shopping-cart.svg" alt="shopping-cart" class="shopping-cart">
+            <div class="bubble"><?php displayTotalCount() ?></div>
+        </div>
+    </header>
     <div class="container itemsContainer">
 
         <?php
@@ -135,7 +142,7 @@ function createCart()
 function addNewItemToCart($item)
 {
     $_SESSION["shoppingCart"][$item['id']] = array(
-            "image_url" => $item['image_url'],
+        "image_url" => $item['image_url'],
         "productName" => $item['product'],
         "itemPrice" => $item['price'],
         "count" => 1,
@@ -220,4 +227,15 @@ function totalPrice()
         $total = $total + $total_price_items;
     }
     return $total;
+}
+
+
+//afficher le nombres total d'items dans la div "cart"
+function displayTotalCount()
+{
+    if (isset($_SESSION['shoppingCart'])) {
+        echo $_SESSION['shoppingCart']["TotalItemsCount"];
+    } else {
+        echo 0;
+    }
 }
