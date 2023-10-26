@@ -103,7 +103,6 @@ function add_item_to_shopping_cart($item)
         if (array_key_exists($item['id'], $_SESSION["shoppingCart"])) {
 
             incrementItemCount($item['id']);
-
         } else {
 
             addNewItemToCart($item);
@@ -119,6 +118,10 @@ function add_item_to_shopping_cart($item)
     //Stocker le nouveau nombre d'items du panier dans la proriété "ToTalItemsCount" du panier
     $_SESSION["shoppingCart"]["TotalItemsCount"] = $totalCountCart;
 
+    //calculer le prix total du panier
+    $totalPriceCart = totalPrice();
+    //stocker le nouveau pris dau panier dans la propriété "TotalPiceCart" du panier
+    $_SESSION["shoppingCart"]["TotalPriceCart"] = $totalPriceCart;
 }
 
 function createCart()
@@ -167,25 +170,25 @@ function totalCountCart()
     }
     return $sum; // on renvoie la sum des counts donc le nombre total d'articles dans le panier
 
-//    $my_article = array();
-//    //mettre à jour le nombre d'items du panier
-//    foreach ($_SESSION['shoppingCart'] as $key => $value) {
-//
-//        if (is_int($key)) {
-//            $my_article[] = $value;
-//        }
-//    }
-//    $counts = array();
-//    foreach ($my_article as $article) {
-//
-//        $counts[] = $article['count'];
-//    }
+    //    $my_article = array();
+    //    //mettre à jour le nombre d'items du panier
+    //    foreach ($_SESSION['shoppingCart'] as $key => $value) {
+    //
+    //        if (is_int($key)) {
+    //            $my_article[] = $value;
+    //        }
+    //    }
+    //    $counts = array();
+    //    foreach ($my_article as $article) {
+    //
+    //        $counts[] = $article['count'];
+    //    }
     // Calculer la somme de tous les counts
-//    $sum = 0;
-//    foreach ($counts as $count) {
-//        $sum = $sum + $count;
-//    }
-//    return $sum;
+    //    $sum = 0;
+    //    foreach ($counts as $count) {
+    //        $sum = $sum + $count;
+    //    }
+    //    return $sum;
 
 }
 
@@ -202,3 +205,19 @@ function test()
 // $item2 = get_by_id(2);
 // $item3 = get_by_id(3);
 // $item4 = get_by_id(4);
+
+
+function totalPrice()
+{
+    $prices = array();
+    foreach ($_SESSION['shoppingCart'] as $key => $value) {
+        if (is_int($key)) { //ne garder que les $value qui ont une clé de type integer => alors ma value est un article
+            $prices[] = $value['totalPriceItem'];
+        }
+    }
+    $total = 0;
+    foreach ($prices as $total_price_items) {
+        $total = $total + $total_price_items;
+    }
+    return $total;
+}
