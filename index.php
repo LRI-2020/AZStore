@@ -53,8 +53,6 @@ function all_items()
     }
 }
 
-
-
 //fonction pour générer les items dans l'html
 function item_html_template($image_url, $product_name, $price, $id)
 {
@@ -102,55 +100,93 @@ function add_item_to_shopping_cart($item)
 {
     if (isset($_SESSION["shoppingCart"])) {
 
-
-
         if (array_key_exists($item['id'], $_SESSION["shoppingCart"])) {
-            $_SESSION["shoppingCart"][$item['id']]['count']++;
-            $total_price_items = $_SESSION["shoppingCart"][$item['id']]['count'] * $_SESSION["shoppingCart"][$item['id']]['itemPrice'];
-            $_SESSION["shoppingCart"][$item['id']]['totalPriceItem'] = $total_price_items;
+
+            incrementItemCount($item['id']);
+
         } else {
-            $_SESSION["shoppingCart"][$item['id']] = array(
-                "productName" => $item['product'],
-                "itemPrice" => $item['price'],
-                "count" => 1,
-                "totalPriceItem" => $item['price'],
-            );
-            //mettre à jour le nombre d'items du panier
+
+            addNewItemToCart($item);
         }
     } else {
-        $_SESSION["shoppingCart"] = array(
-            $item['id'] => array(
-                "productName" => $item['product'],
-                "itemPrice" => $item['price'],
-                "count" => 1,
-                "totalPriceItem" => $item['price']
-            ),
-            //mettre à jour le nombre d'items du panier
-            "TotalPriceCart" => 0,
-            "TotalItemsCount" => 0,
-        );
+        createCart();
+        addNewItemToCart($item);
     }
-    $my_article = array();
-    //mettre à jour le nombre d'items du panier
+
+    //calculer le nombre d'items dans le panier
+    $totalCountCart = totalCountCart();
+
+    //Stocker le nouveau nombre d'items du panier dans la proriété "ToTalItemsCount" du panier
+    $_SESSION["shoppingCart"]["TotalItemsCount"] = $totalCountCart;
+
+}
+
+function createCart()
+{
+    $_SESSION["shoppingCart"] = array(
+        "TotalPriceCart" => 0,
+        "TotalItemsCount" => 0
+    );
+}
+
+//Créer le panier dans $_Session
+function addNewItemToCart($item)
+{
+    $_SESSION["shoppingCart"][$item['id']] = array(
+        "productName" => $item['product'],
+        "itemPrice" => $item['price'],
+        "count" => 1,
+        "totalPriceItem" => $item['price']
+    );
+}
+
+//Incrémenter le count d'un article déjà existant dans le panier
+function incrementItemCount($ItemId)
+{
+    $_SESSION["shoppingCart"][$ItemId]['count']++;
+    $total_price_items = $_SESSION["shoppingCart"][$ItemId]['count'] * $_SESSION["shoppingCart"][$ItemId]['itemPrice'];
+    $_SESSION["shoppingCart"][$ItemId]['totalPriceItem'] = $total_price_items;
+}
+
+//calculer le nombre total d'articles dans le panier
+function totalCountCart()
+{
+    //
+    $counts = array();
+    //récupérer chaque count de chaque article
     foreach ($_SESSION['shoppingCart'] as $key => $value) {
 
-        if (is_int($key)) {
-            $my_article[] = $value;
+        if (is_int($key)) { //ne garder que les $value qui ont une clé de type integer => alors ma value est un article
+            $counts[] = $value['count']; //on stock le count de cet article dans le tableau counts
         }
     }
-    $counts = array();
-    foreach ($my_article as $article) {
 
-        $counts[] = $article['count'];
-    }
-    echo '<pre>';
-    print_r($counts);
-    echo '</pre>';
     $sum = 0;
-    foreach ($counts as $count) {
+    foreach ($counts as $count) { // pour chaque count, on l'ajoute à la variable sum
         $sum = $sum + $count;
     }
-    echo ($sum);
+    return $sum; // on renvoie la sum des counts donc le nombre total d'articles dans le panier
+
+//    $my_article = array();
+//    //mettre à jour le nombre d'items du panier
+//    foreach ($_SESSION['shoppingCart'] as $key => $value) {
+//
+//        if (is_int($key)) {
+//            $my_article[] = $value;
+//        }
+//    }
+//    $counts = array();
+//    foreach ($my_article as $article) {
+//
+//        $counts[] = $article['count'];
+//    }
+    // Calculer la somme de tous les counts
+//    $sum = 0;
+//    foreach ($counts as $count) {
+//        $sum = $sum + $count;
+//    }
+//    return $sum;
+
 }
 
 function test()
