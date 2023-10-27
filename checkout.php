@@ -102,6 +102,7 @@ function send_form()
         if (!empty($firstname) and !empty($lastname) and !empty($email) && !empty($address) && !empty($city) && !empty($zip) && !empty($country)) {
             echo '<script> alert("Your order is validated!");</script>';
             unset($_SESSION['shoppingCart']);
+            header('Location: checkout.php');
         } else {
             // Affichez un message d'erreur si des données sont manquantes
             echo '<script>alert("Please fill in all required fields.");</script>';

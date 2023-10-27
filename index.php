@@ -24,7 +24,9 @@ add_to_cart();
     <header>
         <h1>Luxury shoes</h1>
         <div class="cart">
-            <img src="./assets/img/shopping-cart.svg" alt="shopping-cart" class="shopping-cart">
+            <form action="shopping-cart.php" method="post">
+                <button type="submit" class="btn-cart"><img src="./assets/img/shopping-cart.svg" alt="shopping-cart" class="shopping-cart"></button>
+            </form>
             <div class="bubble"><?php displayTotalCount() ?></div>
         </div>
     </header>
@@ -42,9 +44,6 @@ add_to_cart();
         //on appele la fonction dans l'html
         all_items(); ?>
     </div>
-    <form action="shopping-cart.php" method="post">
-        <input type="submit">
-    </form>
 </body>
 
 </html>
