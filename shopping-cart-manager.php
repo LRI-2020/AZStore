@@ -46,6 +46,25 @@ function totalCountCart()
 }
 
 
+
+//récupérer les items du shopping cart
+function total_items_shopping_cart()
+{
+    if (isset($_SESSION['shoppingCart'])) {
+        $items_cart = array();
+        foreach ($_SESSION['shoppingCart'] as $key => $value) {
+
+            if (is_int($key)) {
+                $items_cart[$key] = $value;
+            }
+        }
+        return $items_cart;
+    } else {
+        return array();
+    }
+}
+
+
 //met à jour le compte total du shopping cart
 function update_totalCount_cart()
 {
