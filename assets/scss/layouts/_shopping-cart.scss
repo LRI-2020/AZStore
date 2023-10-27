@@ -1,13 +1,14 @@
 body {
     margin-top: 3rem;
     margin-bottom: 3rem;
+    gap: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 2rem;
     background-color: #111827;
     text-shadow: #ada4a4 1px 1px 1px;
+    position: relative;
     .buttonsDiv {
         display: flex;
         flex-direction: row;
@@ -15,28 +16,62 @@ body {
     }
     .allProducts {
         display: flex;
-        flex-direction: column;
-        gap: 5rem;
-        .productDiv {
+        flex-direction: row;
+        width: 100%;
+        .products {
+            display: flex;
+            gap: 3rem;
+            flex-direction: column;
+            width: 100%;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            width: 20%;
+            .TotalPriceCart {
+                position: absolute  ;
+                bottom: 3rem;
+                right: 0;
+                z-index: 999;
+                background-color: white;
+                border-radius: 20px;
+                padding: 10px;
+                box-shadow: #ada4a4 1px px 3px;
+            }
+            .TotalItemsCount {
+                bottom: 0;
+                right: 0;
+                z-index: 999;
+                position: absolute;
+                background-color: white;
+                border-radius: 20px;
+                padding: 10px;
+                box-shadow: #ada4a4 1px px 3px;
+            }
+        }
+        .product {
             position: relative;
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 15rem;
+            gap: 20%;
             background-color: white;
             border-radius: 20px;
             height: 20vh;
+            width: 100%;
             box-shadow: #ada4a4 1px px 3px;
             .image_url {
-                width: 10%;
-                height: 100%;
+                width: 10rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
             img {
-                width: 80%;
+                width: 100%;
             }
         }
     }

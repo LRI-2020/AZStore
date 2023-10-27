@@ -1,9 +1,11 @@
 button {
-    background-color: #111827;
-    color: white;
+    background-color: white;
+    border-radius: 20px;
+    width: 10vw;
+    height: 20vh;
+    box-shadow: #ada4a4 1px px 3px;
     border: none;
-    border-radius: 10px;
-    height: 50px;
+    margin: auto;
 }
 input {
     background-color: white;
@@ -11,5 +13,5 @@ input {
     border: none;
     border-radius: 10px;
     height: 50px;
-    width: 80px;
+    width: 15rem;
 }

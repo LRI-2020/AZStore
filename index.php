@@ -22,6 +22,9 @@ add_to_cart();
         //on appele la fonction dans l'html
         all_items(); ?>
     </div>
+    <form action="shopping-cart.php" method="post">
+        <input type="submit">
+    </form>
 </body>
 
 </html>
@@ -221,3 +224,4 @@ function totalPrice()
     }
     return $total;
 }
+

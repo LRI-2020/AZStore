@@ -9,86 +9,106 @@
 </head>
     <body>
         <?php
+        session_start();
 
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
 
- 
+        echo <<<EOD
+            <div class="allProducts">
+        EOD;
+        event();
+        echo <<<EOD
+            </div>
+        EOD;
 
-           /*  echo '<pre>';
-            print_r($shoppingCart);
-            echo '<pre>'; */
-
-            /* echo $shoppingCart['TotalPriceCart'];
-            echo $shoppingCart['TotalItemsCount']; */
-            echo <<<EOD
-                <div class="allProducts">
-            EOD;
+        
 
         function event() {
-            session_start();
-            $shoppingCart = $_SESSION['shoppingCart'];            
-
-            foreach ($shoppingCart as $key=>$items) {
-                echo <<<EOD
-                <div class="productDiv">
-                EOD;
-
-                foreach ($items as $keyItem=>$item) {
-                    if ($keyItem == "image_url") {
-                        echo <<<EOD
-                            <div class=$keyItem>
-                            <img src=$item>
-                            </div>
-                        EOD;
-
-                    } else if ($keyItem == 'price'){
-                        echo <<<EOD
-                            <div class=$keyItem>
-                            EOD;
-                        echo $item, ' €';
-                        echo <<<EOD
-                            </div>
-                        EOD;
-
-                    } else {
-                        echo <<<EOD
-                            <div class=$keyItem>
-                        EOD;
-                        echo $item;
-                        echo <<<EOD
-                            </div>
-                        EOD;
+            $shoppingItems = array(); 
+            $shoppingCart = $_SESSION['shoppingCart'];
+            function delete($key, $value) { 
+                $exist = array_key_exists($key, $_SESSION['shoppingCart']); 
+                if ($exist !== false) {
+                    unset($_SESSION['shoppingCart'][$key]);
+                    if ($key == 'TotalItemsCount') {
+                        unset($_SESSION['shoppingCart'][$key]);
                     }
                 }
-                if (isset($_POST[$key]) == 1){
-                    delete($key);
-                    header('Location: shopping-cart.php');
-                }
+            } 
             echo <<<EOD
-                <form method="POST">
-                    <button value=$key type="submit" name=$key>Delete product</button>
-                </form>
+                <div class="form">
+            EOD;
+            foreach($shoppingCart as $key => $value){
+                if(is_int($key)){
+                  $shoppingItems[] = $value;
+                  echo <<<EOD
+                  <form method="POST">
+                      <button value=$key type="submit" name=$key>Delete product</button>
+                  </form>
+                  EOD;
+                  if (isset($_POST[$key])) {
+                    header('Location: shopping-cart.php');
+                    delete($key, $value);
+                }
+            } else {
+                    echo <<<EOD
+                    <div class=$key>
+                    EOD;
+                    echo $key;
+                    echo $value, '<br />';
+                    echo <<<EOD
+                    </div>
+                    EOD;
+
+                }
+            };
+            echo <<<EOD
                 </div>
             EOD;
             
-            
+            echo <<<EOD
+                <div class="products">
+            EOD;
+            foreach($shoppingItems as $arrayKey => $items) {
+                echo <<<EOD
+                    <div class="product">
+                EOD;
+
+                foreach ($items as $keys => $item) {
+
+                    if ($keys == "image_url") {
+                        echo <<<EOD
+                            <div class='image_url'>
+                            <img src=$item>
+                            </div>
+                        EOD;
+                    } else {
+                        if ($keys == 'itemPrice') {
+                            echo <<<EOD
+                                <div>
+                            EOD;
+                            echo $item, ' $', '<br />';
+                            echo <<<EOD
+                                </div>
+                            EOD;
+                        } else if ($keys == 'totalPriceItem') {
+
+                        } else {
+                            echo $item, '<br />';
+                        }
+                        
+                    }
+                }
+                echo <<<EOD
+                    </div>
+                EOD;
+
+            }      
+            echo <<<EOD
+                </div>
+            EOD;
         }
- 
-        
-       
-        }
-        function delete($key) { 
-            $keys = array_key_exists($key, $_SESSION['shoppingCart']); 
-            if ($keys !== false) {
-                unset($_SESSION['shoppingCart'][$key]);
-            }
-        }
-  
-        event();
-        echo <<<EOD
-        </div>
-        EOD;
         ?>
 
         <div class = 'buttonsDiv'>
