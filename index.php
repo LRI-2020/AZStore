@@ -8,7 +8,7 @@ add_to_cart();
 // echo '<pre>';
 // print_r($_SESSION['shoppingCart']);
 // echo '<pre>';
-test();
+// test();
 ?>
 
 <!DOCTYPE html>
