@@ -2,6 +2,11 @@ body {
   color: white;
 }
 
+h2 {
+  font-size: 50px;
+  text-transform: uppercase;
+}
+
 .btn-items {
   height: 30px;
   width: 80px;
@@ -23,7 +28,7 @@ body {
 body {
   background-size: cover;
   background-attachment: fixed;
-  background-image: linear-gradient(0deg, rgb(17, 24, 39) 0%, rgb(0, 0, 0) 100%);
+  background-image: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(17, 24, 39) 100%);
 }
 
 header {
@@ -47,6 +52,28 @@ header .cart .bubble {
   position: absolute;
   right: 1%;
   top: 1%;
+}
+
+.slogan {
+  width: 100%;
+  display: grid;
+  grid-template-areas: "slog shoe" "slog shoe" "btn nike";
+}
+.slogan .right-one {
+  grid-area: slog;
+  margin: 0;
+}
+.slogan .slogan-btn {
+  grid-area: btn;
+  margin: 0;
+}
+.slogan .big-shoe {
+  grid-area: shoe;
+  margin: 0;
+}
+.slogan .nike {
+  grid-area: nike;
+  margin: 0;
 }
 
 .imgShoe {

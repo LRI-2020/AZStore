@@ -26,10 +26,10 @@ add_to_cart();
 
 
     <div class="slogan">
-        <h2>shoe the right one.</h2>
+        <h2 class="right-one">shoe the right one.</h2>
         <button class="slogan-btn">See our store</button>
-        <img src="./assets/img/shoe_one.png">
-        <p>nike</p>
+        <img src="./assets/img/shoe_one.png" alt="big shoe" class="big-shoe">
+        <p class="nike">nike</p>
     </div>
     <div class="container itemsContainer">
 
