@@ -2,7 +2,10 @@
 // Start the session
 session_start();
 add_to_cart();
-//print_r($_SESSION['shoppingCart']);
+echo '<pre>';
+print_r($_SESSION['shoppingCart']);
+echo '</pre>';
+
 // test();
 ?>
 

@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./assets/scss/layouts/__layouts-dir.scss">
-    <link rel="stylesheet" type="text/css" href="./assets/scss/components/__buttons.scss">
+    <link rel="stylesheet" type="text/css" href="./assets/scss/style.css">
     <title>Document</title>
 </head>
     <body class='body-shopping'>
