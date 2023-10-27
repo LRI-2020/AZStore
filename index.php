@@ -39,6 +39,9 @@ echo '<pre>';
         //on appele la fonction dans l'html
         all_items(); ?>
     </div>
+    <form action="shopping-cart.php" method="post">
+        <input type="submit">
+    </form>
 </body>
 
 </html>
@@ -78,7 +81,7 @@ function item_html_template($image_url, $product_name, $price, $id)
     <h3 class="productName">' . $product_name . '</h3>
     <p class="price">' . $price . '</p>
     <form method="GET" action="index.php">
-        <button value="' . $id . '" type="submit" name="id" class="btn-items">add to cart</button>
+        <button value="' . $id . '" type="submit" name="id">add to cart</button>
     </form>
     </div>';
     //get/post va stocker l'id dans une variable id car name = id dont la valeur se trouve dans value
@@ -152,7 +155,7 @@ function createCart()
 function addNewItemToCart($item)
 {
     $_SESSION["shoppingCart"][$item['id']] = array(
-        "image_url" => $item['image_url'],
+            "image_url" => $item['image_url'],
         "productName" => $item['product'],
         "itemPrice" => $item['price'],
         "count" => 1,
