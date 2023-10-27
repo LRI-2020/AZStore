@@ -2,7 +2,7 @@
 // Start the session
 session_start();
 add_to_cart();
-//print_r($_SESSION['shoppingCart']);
+print_r($_SESSION['shoppingCart']);
 //test();
 ?>
 
@@ -114,7 +114,7 @@ function add_item_to_shopping_cart($item)
 {
     if (isset($_SESSION["shoppingCart"])) {
 
-        if (array_key_exists($item['id'], $_SESSION["shoppingCart"])) {
+        if (array_key_exists($item['id'], $_SESSION["shoppingCart"]["items"])) {
 
             incrementItemCount($item['id']);
         } else {
@@ -141,6 +141,7 @@ function add_item_to_shopping_cart($item)
 function createCart()
 {
     $_SESSION["shoppingCart"] = array(
+            "items"=> array(),
         "TotalPriceCart" => 0,
         "TotalItemsCount" => 0
     );
@@ -149,7 +150,7 @@ function createCart()
 //Créer le panier dans $_Session
 function addNewItemToCart($item)
 {
-    $_SESSION["shoppingCart"][$item['id']] = array(
+    $_SESSION["shoppingCart"]["items"][$item['id']] = array(
         "image_url" => $item['image_url'],
         "productName" => $item['product'],
         "itemPrice" => $item['price'],
@@ -161,9 +162,9 @@ function addNewItemToCart($item)
 //Incrémenter le count d'un article déjà existant dans le panier
 function incrementItemCount($ItemId)
 {
-    $_SESSION["shoppingCart"][$ItemId]['count']++;
-    $total_price_items = $_SESSION["shoppingCart"][$ItemId]['count'] * $_SESSION["shoppingCart"][$ItemId]['itemPrice'];
-    $_SESSION["shoppingCart"][$ItemId]['totalPriceItem'] = $total_price_items;
+    $_SESSION["shoppingCart"]["items"][$ItemId]['count']++;
+    $total_price_items = $_SESSION["shoppingCart"]["items"][$ItemId]['count'] * $_SESSION["shoppingCart"]["items"][$ItemId]['itemPrice'];
+    $_SESSION["shoppingCart"]["items"][$ItemId]['totalPriceItem'] = $total_price_items;
 }
 
 //calculer le nombre total d'articles dans le panier
@@ -172,11 +173,9 @@ function totalCountCart()
     //
     $counts = array();
     //récupérer chaque count de chaque article
-    foreach ($_SESSION['shoppingCart'] as $key => $value) {
+    foreach ($_SESSION['shoppingCart']["items"] as $key => $value) {
 
-        if (is_int($key)) { //ne garder que les $value qui ont une clé de type integer => alors ma value est un article
             $counts[] = $value['count']; //on stock le count de cet article dans le tableau counts
-        }
     }
 
     $sum = 0;
@@ -225,10 +224,8 @@ function test()
 function totalPrice()
 {
     $prices = array();
-    foreach ($_SESSION['shoppingCart'] as $key => $value) {
-        if (is_int($key)) { //ne garder que les $value qui ont une clé de type integer => alors ma value est un article
-            $prices[] = $value['totalPriceItem'];
-        }
+    foreach ($_SESSION['shoppingCart']["items"] as $item) {
+            $prices[] = $item['totalPriceItem'];
     }
     $total = 0;
     foreach ($prices as $total_price_items) {
