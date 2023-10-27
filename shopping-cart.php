@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./assets/scss/components/__buttons.scss">
     <title>Document</title>
 </head>
-    <body>
+    <body class='body-shopping'>
         <?php
         session_start();
 
@@ -44,7 +44,7 @@
                   $shoppingItems[] = $value;
                   echo <<<EOD
                   <form method="POST">
-                      <button value=$key type="submit" name=$key>Delete product</button>
+                      <button value=$key type="submit" name=$key class='delete'>Delete product</button>
                   </form>
                   EOD;
                   if (isset($_POST[$key])) {
@@ -113,10 +113,10 @@
 
         <div class = 'buttonsDiv'>
         <form action="index.php" method="POST">
-            <input type="submit" value="Index" name="index">
+            <input type="submit" value="Index" name="index" class="redirect">
         </form>
         <form action="checkout.php" method="POST">
-            <input type="submit" value="Checkout" name="checkout">
+            <input type="submit" value="Checkout" name="checkout" class="redirect">
         </form>
         </div>
         

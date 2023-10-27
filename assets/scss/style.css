@@ -11,7 +11,7 @@ body {
   flex-direction: row;
 }
 
-button {
+.delete {
   background-color: white;
   border-radius: 20px;
   width: 10vw;
@@ -21,7 +21,7 @@ button {
   margin: auto;
 }
 
-input {
+.redirect {
   background-color: white;
   color: #111827;
   border: none;
@@ -30,7 +30,7 @@ input {
   width: 15rem;
 }
 
-body {
+.body-shopping {
   margin-top: 3rem;
   margin-bottom: 3rem;
   gap: 3rem;
@@ -42,23 +42,23 @@ body {
   text-shadow: #ada4a4 1px 1px 1px;
   position: relative;
 }
-body .buttonsDiv {
+.body-shopping .buttonsDiv {
   display: flex;
   flex-direction: row;
   gap: 5rem;
 }
-body .allProducts {
+.body-shopping .allProducts {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
-body .allProducts .products {
+.body-shopping .allProducts .products {
   display: flex;
   gap: 3rem;
   flex-direction: column;
   width: 100%;
 }
-body .allProducts .form {
+.body-shopping .allProducts .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,7 +66,7 @@ body .allProducts .form {
   gap: 3rem;
   width: 20%;
 }
-body .allProducts .form .TotalPriceCart {
+.body-shopping .allProducts .form .TotalPriceCart {
   position: absolute;
   bottom: 3rem;
   right: 0;
@@ -76,7 +76,7 @@ body .allProducts .form .TotalPriceCart {
   padding: 10px;
   box-shadow: #ada4a4 1px px 3px;
 }
-body .allProducts .form .TotalItemsCount {
+.body-shopping .allProducts .form .TotalItemsCount {
   bottom: 0;
   right: 0;
   z-index: 999;
@@ -86,7 +86,7 @@ body .allProducts .form .TotalItemsCount {
   padding: 10px;
   box-shadow: #ada4a4 1px px 3px;
 }
-body .allProducts .product {
+.body-shopping .allProducts .product {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -99,12 +99,12 @@ body .allProducts .product {
   width: 100%;
   box-shadow: #ada4a4 1px px 3px;
 }
-body .allProducts .product .image_url {
+.body-shopping .allProducts .product .image_url {
   width: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body .allProducts .product img {
+.body-shopping .allProducts .product img {
   width: 100%;
 }/*# sourceMappingURL=style.css.map */
