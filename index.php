@@ -2,9 +2,9 @@
 // Start the session
 session_start();
 add_to_cart();
-echo '<pre>';
-print_r($_SESSION['shoppingCart']);
-echo '<pre>';
+//echo '<pre>';
+//print_r($_SESSION['shoppingCart']);
+//echo '<pre>';
 //test();
 ?>
 
@@ -81,7 +81,7 @@ function item_html_template($image_url, $product_name, $price, $id)
     <h3 class="productName">' . $product_name . '</h3>
     <p class="price">' . $price . '</p>
     <form method="GET" action="index.php">
-        <button value="' . $id . '" type="submit" name="id">add to cart</button>
+        <button value="' . $id . '" type="submit" name="id" class="btn-items">add to cart</button>
     </form>
     </div>';
     //get/post va stocker l'id dans une variable id car name = id dont la valeur se trouve dans value

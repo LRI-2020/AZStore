@@ -9,6 +9,7 @@
     background-color: #111827;
     text-shadow: #ada4a4 1px 1px 1px;
     position: relative;
+    color:#111827;
     .buttonsDiv {
         display: flex;
         flex-direction: row;
@@ -39,7 +40,7 @@
                 background-color: white;
                 border-radius: 20px;
                 padding: 10px;
-                box-shadow: #ada4a4 1px px 3px;
+                box-shadow: #ada4a4 1px 1px 3px;
             }
             .TotalItemsCount {
                 bottom: 0;
@@ -49,7 +50,7 @@
                 background-color: white;
                 border-radius: 20px;
                 padding: 10px;
-                box-shadow: #ada4a4 1px px 3px;
+                box-shadow: #ada4a4 1px 1px 3px;
             }
         }
         .product {
@@ -63,7 +64,7 @@
             border-radius: 20px;
             height: 20vh;
             width: 100%;
-            box-shadow: #ada4a4 1px px 3px;
+            box-shadow: #ada4a4 1px 1px 3px;
             .image_url {
                 width: 10rem;
                 display: flex;
