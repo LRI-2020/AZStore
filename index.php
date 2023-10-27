@@ -1,11 +1,14 @@
 <?php
+
+//chmod("./shopping-cart-manager.php", 0755);
+require_once('./shopping-cart-manager.php');
 // Start the session
 session_start();
 add_to_cart();
-//echo '<pre>';
-//print_r($_SESSION['shoppingCart']);
-//echo '<pre>';
-//test();
+// echo '<pre>';
+// print_r($_SESSION['shoppingCart']);
+// echo '<pre>';
+// test();
 ?>
 
 <!DOCTYPE html>
@@ -48,15 +51,6 @@ add_to_cart();
 <?php
 
 
-function data_items()
-{
-    //aller rechercher les items dans le fichier json
-    $productsJson = file_get_contents('database.json');
-    //les transformer en tableau php
-    $products = json_decode($productsJson, true);
-    //retourner le tableau php
-    return $products;
-}
 
 //afficher les items de la base de données
 function all_items()
@@ -131,17 +125,14 @@ function add_item_to_shopping_cart($item)
         addNewItemToCart($item);
     }
 
-    //calculer le nombre d'items dans le panier
-    $totalCountCart = totalCountCart();
+    update_totalCount_cart();
 
-    //Stocker le nouveau nombre d'items du panier dans la proriété "ToTalItemsCount" du panier
-    $_SESSION["shoppingCart"]["TotalItemsCount"] = $totalCountCart;
-
-    //calculer le prix total du panier
-    $totalPriceCart = totalPrice();
-    //stocker le nouveau pris dau panier dans la propriété "TotalPiceCart" du panier
-    $_SESSION["shoppingCart"]["TotalPriceCart"] = $totalPriceCart;
+    update_totalPrrice_cart();
 }
+
+
+
+
 
 function createCart()
 {
@@ -155,7 +146,7 @@ function createCart()
 function addNewItemToCart($item)
 {
     $_SESSION["shoppingCart"][$item['id']] = array(
-            "image_url" => $item['image_url'],
+        "image_url" => $item['image_url'],
         "productName" => $item['product'],
         "itemPrice" => $item['price'],
         "count" => 1,
@@ -163,84 +154,6 @@ function addNewItemToCart($item)
     );
 }
 
-//Incrémenter le count d'un article déjà existant dans le panier
-function incrementItemCount($ItemId)
-{
-    $_SESSION["shoppingCart"][$ItemId]['count']++;
-    $total_price_items = $_SESSION["shoppingCart"][$ItemId]['count'] * $_SESSION["shoppingCart"][$ItemId]['itemPrice'];
-    $_SESSION["shoppingCart"][$ItemId]['totalPriceItem'] = $total_price_items;
-}
-
-//calculer le nombre total d'articles dans le panier
-function totalCountCart()
-{
-    //
-    $counts = array();
-    //récupérer chaque count de chaque article
-    foreach ($_SESSION['shoppingCart'] as $key => $value) {
-
-        if (is_int($key)) { //ne garder que les $value qui ont une clé de type integer => alors ma value est un article
-            $counts[] = $value['count']; //on stock le count de cet article dans le tableau counts
-        }
-    }
-
-    $sum = 0;
-    foreach ($counts as $count) { // pour chaque count, on l'ajoute à la variable sum
-        $sum = $sum + $count;
-    }
-    return $sum; // on renvoie la sum des counts donc le nombre total d'articles dans le panier
-
-    //    $my_article = array();
-    //    //mettre à jour le nombre d'items du panier
-    //    foreach ($_SESSION['shoppingCart'] as $key => $value) {
-    //
-    //        if (is_int($key)) {
-    //            $my_article[] = $value;
-    //        }
-    //    }
-    //    $counts = array();
-    //    foreach ($my_article as $article) {
-    //
-    //        $counts[] = $article['count'];
-    //    }
-    // Calculer la somme de tous les counts
-    //    $sum = 0;
-    //    foreach ($counts as $count) {
-    //        $sum = $sum + $count;
-    //    }
-    //    return $sum;
-
-}
-
-function test()
-{
-    session_destroy();
-}
-
-
-
-// $item1 = get_by_id(1);
-// add_item_to_shopping_cart($item1);
-// add_item_to_shopping_cart($item1);
-// $item2 = get_by_id(2);
-// $item3 = get_by_id(3);
-// $item4 = get_by_id(4);
-
-
-function totalPrice()
-{
-    $prices = array();
-    foreach ($_SESSION['shoppingCart'] as $key => $value) {
-        if (is_int($key)) { //ne garder que les $value qui ont une clé de type integer => alors ma value est un article
-            $prices[] = $value['totalPriceItem'];
-        }
-    }
-    $total = 0;
-    foreach ($prices as $total_price_items) {
-        $total = $total + $total_price_items;
-    }
-    return $total;
-}
 
 
 //afficher le nombres total d'items dans la div "cart"
@@ -251,4 +164,13 @@ function displayTotalCount()
     } else {
         echo 0;
     }
+}
+
+
+
+
+
+function test()
+{
+    session_destroy();
 }
