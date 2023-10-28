@@ -11,9 +11,6 @@ function data_items()
     return $products;
 }
 
-
-
-
 //Incrémenter le count d'un article déjà existant dans le panier
 function incrementItemCount($ItemId)
 {
@@ -21,8 +18,6 @@ function incrementItemCount($ItemId)
     $total_price_items = $_SESSION["shoppingCart"][$ItemId]['count'] * $_SESSION["shoppingCart"][$ItemId]['itemPrice'];
     $_SESSION["shoppingCart"][$ItemId]['totalPriceItem'] = $total_price_items;
 }
-
-
 
 //calculer le nombre total d'articles dans le panier
 function totalCountCart()
@@ -44,8 +39,6 @@ function totalCountCart()
     return $sum; // on renvoie la sum des counts donc le nombre total d'articles dans le panier
 
 }
-
-
 
 //récupérer les items du shopping cart
 function total_items_shopping_cart()
@@ -76,9 +69,6 @@ function update_totalCount_cart()
 }
 
 
-
-
-
 //met à jour le prix total du shopping cart
 function update_totalPrrice_cart()
 {
@@ -87,8 +77,6 @@ function update_totalPrrice_cart()
     //stocker le nouveau pris dau panier dans la propriété "TotalPiceCart" du panier
     $_SESSION["shoppingCart"]["TotalPriceCart"] = $totalPriceCart;
 }
-
-
 
 //calcule le prix total du cart
 function totalPrice()
