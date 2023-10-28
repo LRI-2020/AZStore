@@ -3,7 +3,7 @@ require_once('./shopping-cart-manager.php');
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-listenForDelete();
+startAllListeners();
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +33,9 @@ listenForDelete();
         <form action="checkout.php" method="POST">
             <input type="submit" value="Checkout" name="checkout" class="redirect">
         </form>
+
+        <p class="cartInfo"> <?php echo 'Total price : '; echo totalPrice(); echo '$'; ?></p>
+        <p class="cartInfo"> <?php echo 'Total articles count : '; echo totalCountCart(); ?></p>
     </div>
 
 </body>
@@ -51,7 +54,15 @@ listenForDelete();
                                 <img src="' . $value["image_url"] . '">
                         </div>
                         <p class="itemPrice">' . $value["itemPrice"] . '$</p>
-                        <p class="itemCount">' . $value["count"] . '</p>
+                        <div class="articleCount">
+                          <form method="POST">
+                             <button value="'.$key.'" type="submit" name="inc" class="Inc"> + </button>
+                          </form>
+                          <p class="itemCount">' . $value["count"] . '</p>
+                          <form method="POST">
+                             <button value="'.$key.'" type="submit" name="dec" class="Dec"> - </button>
+                          </form>
+                        </div>
                         <p class="totalPriceItem">' . $value["totalPriceItem"] . '$</p>
                   <form method="POST">
                       <button value="'.$key.'" type="submit" name="delete" class="delete">Delete product</button>
@@ -59,6 +70,12 @@ listenForDelete();
                     </div>';
             }
         }
+    }
+
+    function startAllListeners(){
+        listenForDelete();
+        listenForInc();
+        listenForDec();
     }
 
     function listenForDelete()
@@ -81,5 +98,30 @@ listenForDelete();
        //recompute total price of cart
        update_totalPrrice_cart();
    }
+
+function listenForInc()
+{
+    if (isset($_POST["inc"])) {
+        $id = $_POST["inc"];
+        IncrementItemCount($id);
+        update_totalCount_cart();
+        update_totalPrrice_cart();
+         header('Location: shopping-cart.php');
+    }
+
+}
+
+function listenForDec()
+{
+    if (isset($_POST["dec"])) {
+        $id = $_POST["dec"];
+        decrementItemCount($id);
+        update_totalCount_cart();
+        update_totalPrrice_cart();
+        header('Location: shopping-cart.php');
+    }
+
+}
+
 
 ?>

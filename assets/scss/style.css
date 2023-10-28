@@ -117,6 +117,9 @@ header .cart .bubble {
   position: relative;
   color: #111827;
 }
+.body-shopping .cartInfo {
+  color: white;
+}
 .body-shopping .buttonsDiv {
   display: flex;
   flex-direction: row;
@@ -182,4 +185,6 @@ header .cart .bubble {
 }
 .body-shopping .allProducts .product img {
   width: 100%;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -19,6 +19,22 @@ function incrementItemCount($ItemId)
     $_SESSION["shoppingCart"][$ItemId]['totalPriceItem'] = $total_price_items;
 }
 
+//Décrémenter le count d'un article déjà existant dans le panier
+function decrementItemCount($ItemId)
+{
+    if($_SESSION["shoppingCart"][$ItemId]['count'] > 1){
+        $_SESSION["shoppingCart"][$ItemId]['count']--;
+        $total_price_items = $_SESSION["shoppingCart"][$ItemId]['count'] * $_SESSION["shoppingCart"][$ItemId]['itemPrice'];
+        $_SESSION["shoppingCart"][$ItemId]['totalPriceItem'] = $total_price_items;
+    }
+
+    if($_SESSION["shoppingCart"][$ItemId]['count'] == 1){
+        unset($_SESSION['shoppingCart'][$ItemId]);
+    }
+
+}
+
+
 //calculer le nombre total d'articles dans le panier
 function totalCountCart()
 {
