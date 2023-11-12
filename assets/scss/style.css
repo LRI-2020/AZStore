@@ -25,6 +25,11 @@ h2 {
   border: none;
 }
 
+.btn-cart {
+  background-color: transparent;
+  border: none;
+}
+
 .delete {
   background-color: white;
   border-radius: 20px;
@@ -44,10 +49,20 @@ h2 {
   width: 15rem;
 }
 
-body {
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.body-index {
   background-size: cover;
+  width: 80%;
+  position: relative;
+  height: 300vh;
   background-attachment: fixed;
-  background-image: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(17, 24, 39) 100%);
+  background: linear-gradient(#111827, #000000);
 }
 
 header {
@@ -73,35 +88,113 @@ header .cart .bubble {
   top: 1%;
 }
 
-.slogan {
-  width: 100%;
-  display: grid;
-  grid-template-areas: "slog shoe" "slog shoe" "btn nike";
+main {
+  height: -moz-fit-content;
+  height: fit-content;
 }
-.slogan .right-one {
-  grid-area: slog;
+main .shoe-nike-div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50vh;
+  float: right;
+}
+main .shoe-nike-div .nike {
+  position: absolute;
   margin: 0;
+  z-index: -1;
+  font-size: 200px;
 }
-.slogan .slogan-btn {
+main .shoe-nike-div .big-shoe {
+  position: absolute;
+  width: 80%;
+}
+main .slogan {
+  width: 100%;
+}
+main .slogan .slogan-btn {
   grid-area: btn;
   margin: 0;
 }
-.slogan .big-shoe {
-  grid-area: shoe;
-  margin: 0;
+main .slogan .right-one-div {
+  width: 50%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  float: left;
 }
-.slogan .nike {
-  grid-area: nike;
-  margin: 0;
+main .slogan .right-one-div .right-one {
+  width: 50%;
+}
+main .slogan .right-one-div .right-one .blue {
+  font-style: normal;
+  color: #2563eb;
 }
 
 .imgShoe {
-  width: 15%;
+  width: 20%;
 }
 
 .itemsContainer {
+  position: absolute;
+  bottom: 50%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
+  gap: 12rem;
+  padding-top: 7rem;
+}
+.itemsContainer .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: relative;
+  width: 15%;
+}
+.itemsContainer .item img {
+  width: 80%;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  border-radius: 15px;
+  box-shadow: 2rem 2rem 0.5rem #0f1625, -2rem -2rem 0.5rem #0f1625, 2rem -2rem 0.5rem #0f1625, -2rem 2rem 0.5rem #0f1625;
+}
+.itemsContainer .item .div-add-infos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.itemsContainer .item form {
+  position: absolute;
+  float: right;
+  right: 5%;
+  bottom: 5%;
+}
+.itemsContainer .last-products {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.itemsContainer .last-products .last {
+  font-size: 25px;
+}
+.itemsContainer .last-products .last i {
+  font-style: normal;
+  color: #2563eb;
+}
+.itemsContainer h3 {
+  margin: 0;
+}
+.itemsContainer p {
+  margin: 0;
 }
 
 .body-shopping {
@@ -185,6 +278,4 @@ header .cart .bubble {
 }
 .body-shopping .allProducts .product img {
   width: 100%;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

@@ -1,10 +1,64 @@
 .imgShoe {
-    width: 15%;
+    width: 20%;
 }
 
 
 
 .itemsContainer {
+    position: absolute;
+    bottom: 50%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
+    gap: 12rem;
+    padding-top: 7rem;
+    .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: fit-content;
+        position: relative;
+        width: 15%;
+        img {
+            width: 80%;
+            padding-left: 5rem;
+            padding-right: 5rem;
+            border-radius: 15px;
+            box-shadow: 2rem 2rem 0.5rem  #0f1625, -2rem -2rem 0.5rem  #0f1625, 2rem -2rem 0.5rem  #0f1625, -2rem 2rem 0.5rem  #0f1625;
+            
+        }
+        .div-add-infos {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        form {
+            position: absolute;
+            float: right;
+            right: 5%;
+            bottom: 5%;
+        }
+    }
+    .last-products {
+        position: absolute;
+        top: 0;
+        left: 0;
+        .last {
+            font-size: 25px;
+            i {
+                font-style: normal;
+                color: #2563eb;
+            }
+        }
+    }
+    h3 {
+        margin: 0;
+    }
+    p {
+        margin: 0;
+    }
 }

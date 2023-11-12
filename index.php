@@ -20,9 +20,9 @@ add_to_cart();
     <title>AZStore</title>
 </head>
 
-<body>
+<body class="body-index">
     <header>
-        <h1>Luxury shoes</h1>
+        <h1>AZ[store]</h1>
         <div class="cart">
             <form action="shopping-cart.php" method="post">
                 <button type="submit" class="btn-cart"><img src="./assets/img/shopping-cart.svg" alt="shopping-cart" class="shopping-cart"></button>
@@ -32,18 +32,31 @@ add_to_cart();
     </header>
 
 
-    <div class="slogan">
-        <h2 class="right-one">shoe the right one.</h2>
-        <button class="slogan-btn">See our store</button>
-        <img src="./assets/img/shoe_one.png" alt="big shoe" class="big-shoe">
-        <p class="nike">nike</p>
-    </div>
-    <div class="container itemsContainer">
+    <main>
+        <section>
+        <div class="slogan">
+            <div class="right-one-div">
+                <h2 class="right-one">shoe the right <i class="blue">one</i>.</h2>
+                <button class="slogan-btn">See our store</button>
+            </div>
+        </section>
+        <section>
+            <div class="shoe-nike-div">
+                    <img src="./assets/img/shoe_one.png" alt="big shoe" class="big-shoe">
+                    <p class="nike">NIKE</p>
+                </div>
+            </div>
+            <div class="container itemsContainer">
+                <div class="last-products">
+                    <h2 class="last"><i>Our</i> last products</h2>
+                </div>
 
-        <?php
-        //on appele la fonction dans l'html
-        all_items(); ?>
-    </div>
+                <?php
+                //on appele la fonction dans l'html
+                all_items(); ?>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
@@ -69,13 +82,15 @@ function all_items()
 function item_html_template($image_url, $product_name, $price, $id)
 {
     $item_html =
-        '<div class="item">
-    <img src="' . $image_url . '"alt="img" class="imgShoe">
-    <h3 class="productName">' . $product_name . '</h3>
-    <p class="price">' . $price . '</p>
-    <form method="GET" action="index.php">
-        <button value="' . $id . '" type="submit" name="id" class="btn-items">add to cart</button>
-    </form>
+    '<div class="item">
+        <img src="' . $image_url . '"alt="img" class="imgShoe">
+        <div class="div-add-infos">
+            <h3 class="productName">' . $product_name . '</h3>
+            <p class="price">' . $price . '€</p>
+        </div>
+        <form method="GET" action="index.php">
+            <button value="' . $id . '" type="submit" name="id" class="btn-items">add to cart</button>
+        </form>
     </div>';
     //get/post va stocker l'id dans une variable id car name = id dont la valeur se trouve dans value
     return $item_html;

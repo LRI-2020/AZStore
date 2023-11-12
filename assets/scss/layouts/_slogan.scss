@@ -1,32 +1,48 @@
-.slogan {
-    width: 100%;
-
-    display: grid;
-    grid-template-areas:
-        'slog shoe'
-        'slog shoe'
-        'btn nike';
-
-    .right-one {
-        grid-area: slog;
-
-        margin: 0;
+main {
+    height: fit-content;
+    .shoe-nike-div {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 50vh;
+        float: right;
+        .nike {
+            position: absolute;
+            margin: 0;
+            z-index: -1;
+            font-size: 200px;
+            
+        }
+        .big-shoe {
+            position: absolute;
+            width: 80%;
+        }
     }
-
-    .slogan-btn {
-        grid-area: btn;
-        margin: 0;
-    }
-
-    .big-shoe {
-        grid-area: shoe;
-
-        margin: 0;
-    }
-
-    .nike {
-        grid-area: nike;
-
-        margin: 0;
+    .slogan {
+        width: 100%;
+    
+       
+        .slogan-btn {
+            grid-area: btn;
+            margin: 0;
+        }
+        .right-one-div {
+            width: 50%;
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            float: left;
+            .right-one {
+                width: 50%;
+                .blue {
+                    font-style: normal;
+                    color: #2563eb;
+                }
+            }
+        }
+    
     }
 }
