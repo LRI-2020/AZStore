@@ -1,7 +1,7 @@
 .body-shopping {
     margin-top: 3rem;
     margin-bottom: 3rem;
-    gap: 3rem;
+    gap: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,34 +35,14 @@
             align-items: center;
             gap: 3rem;
             width: 20%;
-            .TotalPriceCart {
-                position: absolute  ;
-                bottom: 3rem;
-                right: 0;
-                z-index: 999;
-                background-color: white;
-                border-radius: 20px;
-                padding: 10px;
-                box-shadow: #ada4a4 1px 1px 3px;
-            }
-            .TotalItemsCount {
-                bottom: 0;
-                right: 0;
-                z-index: 999;
-                position: absolute;
-                background-color: white;
-                border-radius: 20px;
-                padding: 10px;
-                box-shadow: #ada4a4 1px 1px 3px;
-            }
         }
         .product {
             position: relative;
             display: flex;
-            flex-direction: row;
+            flex-direction: row-reverse;
             justify-content: center;
             align-items: center;
-            gap: 20%;
+            gap: 15%;
             background-color: white;
             border-radius: 20px;
             height: 20vh;
